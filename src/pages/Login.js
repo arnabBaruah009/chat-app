@@ -4,24 +4,32 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 
 import styles from "../styles/register.module.css";
 import { auth } from "../firebase";
+import { Loader } from "../components";
 
 const Login = () => {
   const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const email = e.target[0].value;
     const password = e.target[1].value;
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      setLoading(false);
       navigate("/chatRoom");
     } catch (error) {
       setErr(true);
       console.log(error);
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.container}>

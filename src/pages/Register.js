@@ -6,13 +6,16 @@ import { useNavigate, Link } from "react-router-dom";
 
 import styles from "../styles/register.module.css";
 import { auth, storage, db } from "../firebase";
+import { Loader } from "../components";
 
 const Register = () => {
   const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const name = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
@@ -26,22 +29,27 @@ const Register = () => {
       const downloadURL = await getDownloadURL(storageRef);
       await updateProfile(res.user, {
         displayName: name,
-        photoURL: downloadURL
+        photoURL: downloadURL,
       });
       await setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
         displayName: name,
         email,
-        photoURL: downloadURL
+        photoURL: downloadURL,
       });
 
       await setDoc(doc(db, "userChats", res.user.uid), {});
+      setLoading(false);
       navigate("/chatRoom");
     } catch (error) {
       setErr(true);
       console.log(error);
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.container}>
