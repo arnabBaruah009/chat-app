@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.formDiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+}
+
+.formDiv form {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,15 @@
+.message {
+  width: 100%;
+}
+
+.message p {
+  padding: 1rem;
+}
+
+.owner {
+  text-align: right;
+}
+
+.receiver {
+  text-align: left;
+}

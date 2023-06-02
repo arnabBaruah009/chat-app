@@ -1,0 +1,49 @@
+.leftContainer {
+  padding: 0.4rem;
+  /* border: 1px solid red; */
+  width: 35%;
+}
+
+.searchBar {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  padding: 0.3rem;
+  background: #e3e6ef;
+}
+
+.searchBar svg {
+  height: 20px;
+  width: 35px;
+}
+
+.searchBar input {
+  width: 100%;
+  outline: 0;
+  border: 0px;
+  background: #e3e6ef;
+}
+
+.conversationList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header span {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}
+
+.header svg {
+  height: 20px;
+  width: 35px;
+  cursor: pointer;
+}

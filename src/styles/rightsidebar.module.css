@@ -1,0 +1,35 @@
+.rightContainer {
+  border: 1px solid red;
+  width: 65%;
+  display: grid;
+  grid-template-rows: 1fr 8fr 1fr;
+}
+
+.header {
+  width: 100%;
+  border: 1px solid;
+  display: grid;
+  grid-template-columns: 0.5rem 1fr 3fr 1fr 0.5rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.header img {
+  width: 30px;
+  grid-column: 2/3;
+}
+
+.header .userName {
+  grid-column: 3/4;
+  text-align: center;
+}
+
+.messages {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.inputDiv {
+  width: 100%;
+}
