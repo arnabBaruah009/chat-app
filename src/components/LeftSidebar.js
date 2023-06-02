@@ -1,14 +1,16 @@
 import { collection, onSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import styles from "../styles/leftsidebar.module.css";
 import { User } from "./";
 import { db } from "../firebase";
+import { AuthContext } from "../context/AuthContext";
 
 const LeftSideBar = ({ user, handleClick }) => {
   const [users, setUsers] = useState([]);
   const [users2, setUsers2] = useState([]);
   const [search, setSearch] = useState("");
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -17,7 +19,9 @@ const LeftSideBar = ({ user, handleClick }) => {
         (querySnapshot) => {
           const fetchedUsers = [];
           querySnapshot.forEach((doc) => {
-            fetchedUsers.push(doc.data());
+            if (doc.data().uid !== currentUser.uid) {
+              fetchedUsers.push(doc.data());
+            }
           });
           setUsers(fetchedUsers);
           setUsers2(fetchedUsers);

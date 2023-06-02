@@ -8,3 +8,7 @@ body {
   /* text-align: center; */
   display: flex;
 }
+
+body::-webkit-scrollbar{
+  display: none;
+}
