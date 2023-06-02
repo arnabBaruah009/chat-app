@@ -9,6 +9,10 @@ import { auth, storage, db } from "../firebase";
 import { Loader } from "../components";
 
 const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [file, setFile] = useState(null);
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -16,10 +20,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const name = e.target[0].value;
-    const email = e.target[1].value;
-    const password = e.target[2].value;
-    const file = e.target[3].files[0];
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -40,6 +40,10 @@ const Register = () => {
 
       await setDoc(doc(db, "userChats", res.user.uid), {});
       setLoading(false);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setFile(null);
       navigate("/chatRoom");
     } catch (error) {
       setErr(true);
@@ -59,23 +63,48 @@ const Register = () => {
             <span>Something went wrong</span>
           </>
         ) : (
-          <>
-            <span>Welcome</span>
-            <span>Register</span>
-            <form onSubmit={handleSubmit}>
-              <input type="text" placeholder="Name" />
-              <input type="email" placeholder="Email" />
-              <input type="password" placeholder="Password" />
-              <input style={{ display: "none" }} type="file" id="file" />
-              <label htmlFor="file">
-                <span>Add an avatar</span>
-              </label>
-              <button>Sign up</button>
-            </form>
-            <p>
-              You do have an account? <Link to="/login">Login</Link>
+          <form className={styles.form}>
+            <p className={styles.formTitle}>Register your account</p>
+            <div className={styles.inputContainer}>
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className={styles.inputContainer}>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className={styles.inputContainer}>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className={styles.inputContainer}>
+              <input type="file" onChange={(e) => setFile(e.target.value)} />
+            </div>
+            <button
+              onClick={handleSubmit}
+              type="submit"
+              className={styles.submit}
+            >
+              Register
+            </button>
+
+            <p className={styles.signupLink}>
+              Have account?
+              <Link to={"/login"}>Login</Link>
             </p>
-          </>
+          </form>
         )}
       </div>
     </div>
