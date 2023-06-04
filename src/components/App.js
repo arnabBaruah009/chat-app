@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
 
 import { ChatRoom, Register, Login } from "../pages";
 import ProtectedRoute from "../utils/ProtectedRoute";
@@ -19,6 +20,7 @@ const App = () => {
             }
           />
         </Routes>
+        <Toaster />
       </div>
     </BrowserRouter>
   );

@@ -3,8 +3,9 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
-import styles from "../styles/register.module.css";
+import styles from "../styles/auth.module.css";
 import { auth, storage, db } from "../firebase";
 import { Loader } from "../components";
 
@@ -13,7 +14,6 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [file, setFile] = useState(null);
-  const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -39,6 +39,7 @@ const Register = () => {
       });
 
       await setDoc(doc(db, "userChats", res.user.uid), {});
+      toast.success("Welcome");
       setLoading(false);
       setName("");
       setEmail("");
@@ -46,7 +47,13 @@ const Register = () => {
       setFile(null);
       navigate("/chatRoom");
     } catch (error) {
-      setErr(true);
+      if(error.code == 'auth/email-already-in-use'){
+        toast.error("Email already in use");
+      }
+      if(error.code == 'auth/invalid-email'){
+        toast.error("Invalid email");
+      }
+      setLoading(false);
       console.log(error);
     }
   };
@@ -58,54 +65,48 @@ const Register = () => {
   return (
     <div className={styles.container}>
       <div className={styles.formDiv}>
-        {err ? (
-          <>
-            <span>Something went wrong</span>
-          </>
-        ) : (
-          <form className={styles.form}>
-            <p className={styles.formTitle}>Register your account</p>
-            <div className={styles.inputContainer}>
-              <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className={styles.inputContainer}>
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className={styles.inputContainer}>
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className={styles.inputContainer}>
-              <input type="file" onChange={(e) => setFile(e.target.value)} />
-            </div>
-            <button
-              onClick={handleSubmit}
-              type="submit"
-              className={styles.submit}
-            >
-              Register
-            </button>
+        <form className={styles.form}>
+          <p className={styles.formTitle}>Register your account</p>
+          <div className={styles.inputContainer}>
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <input type="file" onChange={(e) => setFile(e.target.value)} />
+          </div>
+          <button
+            onClick={handleSubmit}
+            type="submit"
+            className={styles.submit}
+          >
+            Register
+          </button>
 
-            <p className={styles.signupLink}>
-              Have account?
-              <Link to={"/login"}>Login</Link>
-            </p>
-          </form>
-        )}
+          <p className={styles.signupLink}>
+            Have account?
+            <Link to={"/login"}>Login</Link>
+          </p>
+        </form>
       </div>
     </div>
   );
