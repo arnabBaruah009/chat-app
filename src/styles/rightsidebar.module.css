@@ -1,44 +1,237 @@
 .rightContainer {
-  border: 1px solid red;
-  width: 65%;
-  height: 98vh;
+  flex-grow: 1;
+  height: 100vh;
   display: grid;
   grid-template-rows: 1fr 8fr 1fr;
 }
 
-.rightContainer::-webkit-scrollbar{
+.rightContainer::-webkit-scrollbar {
   display: none;
 }
 
 .header {
   width: 100%;
-  border: 1px solid;
   display: grid;
   grid-template-columns: 0.5rem 1fr 3fr 1fr 0.5rem;
   justify-items: center;
   align-items: center;
+  background: #6989ff;
+  padding: 0.5em;
 }
 
 .header img {
-  width: 30px;
+  width: 60px;
+  height: 70px;
   grid-column: 2/3;
+  object-fit: cover;
+  border-radius: 14px;
 }
 
 .header .userName {
   grid-column: 3/4;
   text-align: center;
+  text-transform: capitalize;
+  font-family: 'Inconsolata', monospace;
+  margin: 0;
+  font-size: 1.7em;
+  color: #fbf2ea;
+}
+
+.logout {
+  --primary-color: #2027a7;
+  --secondary-color: #fff;
+  --hover-color: #111;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 1em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.logout .arrowWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.logout .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.logout:hover {
+  background-color: var(--hover-color);
+}
+
+.logout:hover .arrow {
+  background: var(--secondary-color);
+}
+
+.logout:hover .arrow:before {
+  right: 0;
 }
 
 .messages {
-  border: 1px solid green;
   width: 100%;
   overflow-y: auto;
 }
 
-.messages::-webkit-scrollbar{
+.messages::-webkit-scrollbar {
   display: none;
+}
+
+.messages ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.messages ul li{
+  display: flex;
+  margin: 5px 15px;
+}
+
+.messages .owner {
+  justify-content: end;
+}
+
+.messages .receiver {
+  justify-content: start;
 }
 
 .inputDiv {
   width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 4fr 1fr;
+  justify-items: center;
+}
+
+.inputDiv textarea{
+  font-family: 'Quicksand', sans-serif;
+  line-height: 1.2em;
+  resize: none;
+  width: 100%;
+  height: 70%;
+  box-sizing: border-box;
+  border-radius: 15px;
+  color: white;
+  background-color: #40414f;
+  box-shadow: 5px 5px #34343f;
+  font-size: 1em;
+  padding: 0.5em;
+  outline: none;
+}
+
+.inputDiv textarea::placeholder{
+  color: #757575;
+}
+
+.inputDiv button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  width: fit-content;
+}
+
+.inputDiv button {
+  --primary-color: #111;
+  --hovered-color: #c84747;
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  font-size: 20px;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.inputDiv button p {
+  margin: 0;
+  position: relative;
+  font-size: 20px;
+  color: var(--primary-color)
+}
+
+.inputDiv button::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  left: 0;
+  bottom: -7px;
+  background: var(--hovered-color);
+  height: 2px;
+  transition: 0.3s ease-out;
+}
+
+.inputDiv button p::before {
+  position: absolute;
+/*   box-sizing: border-box; */
+  content: "Send";
+  width: 0%;
+  inset: 0;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: 0.3s ease-out;
+}
+
+.inputDiv button:hover::after {
+  width: 100%;
+}
+
+.inputDiv button:hover p::before {
+  width: 100%;
+}
+
+.inputDiv button:hover svg {
+  transform: translateX(4px);
+  color: var(--hovered-color)
+}
+
+.inputDiv button svg {
+  color: var(--primary-color);
+  transition: 0.2s;
+  position: relative;
+  width: 15px;
+  transition-delay: 0.2s;
+}
+
+.start{
+  flex-grow: 1;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.start span{
+  font-size: 2.5rem;
+  font-family: 'Inconsolata';
 }

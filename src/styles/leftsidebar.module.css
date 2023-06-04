@@ -1,4 +1,5 @@
 .leftContainer {
+  box-sizing: border-box;
   padding: 0.4rem;
   /* border: 1px solid red; */
   width: 35%;
@@ -6,7 +7,7 @@
   overflow-y: auto;
 }
 
-.leftContainer::-webkit-scrollbar{
+.leftContainer::-webkit-scrollbar {
   display: none;
 }
 
@@ -15,19 +16,31 @@
   display: flex;
   align-items: center;
   padding: 0.3rem;
-  background: #e3e6ef;
+  background: #fffcf9;
+  padding-inline-end: 1em;
+  position: relative;
+  border-radius: 4px;
+  width: 90%;
 }
 
-.searchBar svg {
-  height: 20px;
-  width: 35px;
+.searchBar label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
 }
 
 .searchBar input {
   width: 100%;
-  outline: 0;
-  border: 0px;
-  background: #e3e6ef;
+  padding-left: 1em;
+  outline: none;
+  background: none;
+  border: 0;
+}
+
+.searchBar svg {
+  height: 25px;
+  padding-left: 0.7em;
 }
 
 .conversationList {

@@ -1,15 +1,11 @@
-.message {
-  width: 100%;
+.message{
+  width: fit-content;
+  background-color: aqua;
+  border-radius: 15px;
 }
 
 .message p {
   padding: 1rem;
-}
-
-.owner {
-  text-align: right;
-}
-
-.receiver {
-  text-align: left;
+  margin: 0;
+  font-size: 1.3rem;
 }

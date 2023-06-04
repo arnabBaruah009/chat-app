@@ -65,7 +65,7 @@ const User = ({ user, handleClick, active }) => {
         <img src={user.photoURL} alt="profile" />
       </div>
       <div className={styles.userData}>
-        <p>{user.displayName}</p>
+        <p className={styles.displayName}>{user.displayName}</p>
         <p>
           <small>{user.lastText}</small>
         </p>

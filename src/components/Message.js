@@ -1,11 +1,8 @@
-import { useContext, useRef, useEffect } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useRef, useEffect } from "react";
 
 import styles from "../styles/message.module.css";
 
 const Message = ({ message }) => {
-  const { currentUser } = useContext(AuthContext);
-
   const ref = useRef();
 
   useEffect(() => {
@@ -15,11 +12,7 @@ const Message = ({ message }) => {
   return (
     <div
       ref={ref}
-      className={
-        message.senderID === currentUser.uid
-          ? `${styles.owner} ${styles.message}`
-          : `${styles.receiver} ${styles.message}`
-      }
+      className={styles.message}
     >
       <p>{message.text}</p>
     </div>
