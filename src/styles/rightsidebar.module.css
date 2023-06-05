@@ -241,6 +241,7 @@
 .start span{
   font-size: 2.5rem;
   font-family: 'Quicksand', sans-serif;
+  text-align: center;
 }
 
 .start button{
