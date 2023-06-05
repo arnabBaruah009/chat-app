@@ -23,10 +23,17 @@ const Register = () => {
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
+      let storageRef;
 
-      const storageRef = ref(storage, name);
-      await uploadBytes(storageRef, file);
+      if (file != null) {
+        storageRef = ref(storage, name);
+        await uploadBytes(storageRef, file);
+      } else {
+        storageRef = ref(storage, 'user_avatar.png');
+      }
+      
       const downloadURL = await getDownloadURL(storageRef);
+
       await updateProfile(res.user, {
         displayName: name,
         photoURL: downloadURL,
@@ -94,7 +101,7 @@ const Register = () => {
           <div className={styles.inputContainer}>
             <input
               type="file"
-              onChange={(e) => setFile(e.target.value)}
+              onChange={(e) => setFile(e.target.files[0])}
               id="file"
               style={{ display: "none" }}
             />

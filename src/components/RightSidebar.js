@@ -43,10 +43,6 @@ const RightSidebar = ({ user }) => {
       }),
     });
 
-    await updateDoc(doc(db, "users", data.user.uid), {
-      lastText: text,
-    });
-
     setText("");
   };
 
@@ -59,8 +55,8 @@ const RightSidebar = ({ user }) => {
             <p className={styles.userName}>{user.displayName}</p>
             <button onClick={() => signOut(auth)} className={styles.logout}>
               Log out
-              <div class={styles.arrowWrapper}>
-                <div class={styles.arrow}></div>
+              <div className={styles.arrowWrapper}>
+                <div className={styles.arrow}></div>
               </div>
             </button>
           </div>
@@ -74,8 +70,9 @@ const RightSidebar = ({ user }) => {
                         ? `${styles.owner}`
                         : `${styles.receiver}`
                     }
+                    key={`m+${index}`}
                   >
-                    <Message message={message} key={`m+${index}`} />
+                    <Message message={message} />
                   </li>
                 );
               })}
@@ -105,7 +102,7 @@ const RightSidebar = ({ user }) => {
               </svg>
             </button>
           </div>
-          <div class="Message"></div>
+          <div className="Message"></div>
         </div>
       ) : (
         <div className={styles.start}>
