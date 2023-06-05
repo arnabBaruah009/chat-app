@@ -105,8 +105,17 @@ const RightSidebar = ({ user }) => {
           <div className="Message"></div>
         </div>
       ) : (
-        <div className={styles.start}>
-          <span>Start a conversation</span>
+        <div className={styles.container}>
+          <div className={styles.start}>
+            <span>Start a conversation</span>
+            <span>OR</span>
+            <button onClick={() => signOut(auth)} className={styles.logout}>
+              Log out
+              <div className={styles.arrowWrapper}>
+                <div className={styles.arrow}></div>
+              </div>
+            </button>
+          </div>
         </div>
       )}
     </>
