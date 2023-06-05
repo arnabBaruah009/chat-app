@@ -11,12 +11,12 @@ const User = ({ user, handleClick, active }) => {
   const { dispatch } = useContext(ChatContext);
   const [lastMessage, setLastMessage] = useState("");
 
-  const combinedID =
-    currentUser.uid > user.uid
-      ? currentUser.uid + user.uid
-      : user.uid + currentUser.uid;
-
   useEffect(() => {
+    const combinedID =
+      currentUser.uid > user.uid
+        ? currentUser.uid + user.uid
+        : user.uid + currentUser.uid;
+
     const fetchLastMessage = async () => {
       const unsub = await onSnapshot(doc(db, "chats", combinedID), (doc) => {
         if (doc.exists() && doc.data().messages.length > 0) {
@@ -35,6 +35,11 @@ const User = ({ user, handleClick, active }) => {
     handleClick(user);
 
     try {
+      const combinedID =
+        currentUser.uid > user.uid
+          ? currentUser.uid + user.uid
+          : user.uid + currentUser.uid;
+
       const res = await getDoc(doc(db, "chats", combinedID));
 
       //if chats doesn't exists
