@@ -45,7 +45,6 @@ const Register = () => {
         photoURL: downloadURL,
       });
 
-      await setDoc(doc(db, "userChats", res.user.uid), {});
       toast.success("Welcome");
       setLoading(false);
       setName("");
