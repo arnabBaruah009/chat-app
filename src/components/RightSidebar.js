@@ -63,15 +63,14 @@ const RightSidebar = ({ user }) => {
           <div className={styles.messages}>
             <ul>
               {messages.map((message, index) => {
+                const isOwner =
+                  currentUser && message.senderID === currentUser.uid;
+                const messageClassName = isOwner
+                  ? styles.owner
+                  : styles.receiver;
+
                 return (
-                  <li
-                    className={
-                      message.senderID === currentUser.uid
-                        ? `${styles.owner}`
-                        : `${styles.receiver}`
-                    }
-                    key={`m+${index}`}
-                  >
+                  <li className={messageClassName} key={`m+${index}`}>
                     <Message message={message} />
                   </li>
                 );
