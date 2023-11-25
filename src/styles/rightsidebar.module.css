@@ -17,17 +17,17 @@
   grid-template-columns: 0.5rem 1fr 3fr 1fr 0.5rem;
   justify-items: center;
   align-items: center;
-  background: #6989ff;
+  background: linear-gradient(90deg, rgba(255,64,102,1) 0%, rgba(255,153,106,1) 100%);
   padding: 0.5em;
   border-radius: 20px;
 }
 
 .header img {
   width: 60px;
-  height: 70px;
+  height: 60px;
   grid-column: 2/3;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 50%;
 }
 
 .header .userName {
@@ -126,7 +126,8 @@
 }
 
 .messages .owner > div {
-  background-color: #272a35;
+  background-color: #f04c4d;
+  border-radius: 20px 20px 5px;
 }
 
 .messages .receiver {
@@ -135,6 +136,7 @@
 
 .messages .receiver > div {
   background-color: #373e4e;
+  border-radius: 15px 15px 15px 5px;
 }
 
 .inputDiv {
@@ -175,7 +177,7 @@
 }
 
 .inputDiv button {
-  --primary-color: #111;
+  --primary-color: #c84747;
   --hovered-color: #c84747;
   position: relative;
   display: flex;
@@ -189,7 +191,9 @@
   margin: 0;
   position: relative;
   font-size: 20px;
-  color: var(--primary-color);
+  background: -webkit-linear-gradient(#ff4066, #865037);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .inputDiv button::after {
