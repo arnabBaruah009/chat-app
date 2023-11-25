@@ -3,8 +3,9 @@
   padding: 0.4rem;
   /* border: 1px solid red; */
   width: 35%;
-  height: 99vh;
+  height: 100vh;
   overflow-y: auto;
+  background-color: #292f3f;
 }
 
 .leftContainer::-webkit-scrollbar {
@@ -54,6 +55,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  color: #ffffff;
 }
 
 .header span {

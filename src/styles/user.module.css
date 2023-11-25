@@ -3,20 +3,19 @@
   align-items: center;
   margin: 4px 0;
   cursor: pointer;
-  padding: 0.8rem;
-  background-color: #4138ae;
+  padding: 0.5rem;
   border-radius: 18px;
 }
 
 .container:hover,
 .active {
-  background: #6989ff;
+  background: #7A8194;
 }
 
 .imgDiv {
   height: 60px;
   width: 60px;
-  border-radius: 15px;
+  border-radius: 50%;
 }
 
 .imgDiv img {
